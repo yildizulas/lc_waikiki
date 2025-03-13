@@ -16,7 +16,7 @@ This project implements a product carousel similar to the one found on **lcwaiki
 1. Clone this repository:
    ```sh
    git clone https://github.com/yildizulas/lc_waikiki.git
-   cd product-carousel
+   cd lc_waikiki
    ```
 2. Open **Developer Tools (F12) > Console** in your browser.
 3. Copy and paste the **JS file content** into the console and hit enter.
@@ -24,8 +24,8 @@ This project implements a product carousel similar to the one found on **lcwaiki
 
 Alternatively, you can include the script in an HTML file:
 ```html
-<script src="ULAS_YILDIZ.js"></script>
-
+<script src="ulaş_yıldız.js"></script>
+```
 ## API Details
 
 - **Endpoint:** [Products JSON](https://gist.githubusercontent.com/sevindi/5765c5812bbc8238a38b3cf52f233651/raw/56261d81af8561bf0a7cf692fe572f9e1e91f372/products.json)
@@ -34,9 +34,11 @@ Alternatively, you can include the script in an HTML file:
   - Reload: Retrieves data from **localStorage** instead of API.
 
 ## File Structure
+```
 📂 product-carousel/
 ├── 📜 ULAS_YILDIZ.js  # JavaScript file containing the entire logic
 ├── 📜 README.md       # Project documentation (this file)
+```
 
 ## Responsive Design
 
