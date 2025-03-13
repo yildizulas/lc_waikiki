@@ -1,30 +1,45 @@
 const buildHTML = () => {
   const html = `
-          <div id="similar-items-recommendations">
-              <div class="recommendation-carousel">
-                  <div class="carousel-container">
-                      <p class="similar-products-title">You Might Also Like</p>
-                      <div class="carousel padded-carousel">
-                          <button type="button" aria-label="previous" class="buttonBack___1mlaL carousel__back-button carousel-arrow carousel-arrow-left" disabled="">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14.242" height="24.242" viewBox="0 0 14.242 24.242">
-                                  <path fill="none" stroke="#333" stroke-linecap="round" stroke-width="3px" d="M2106.842 2395.467l-10 10 10 10" transform="translate(-2094.721 -2393.346)"></path>
-                              </svg>
-                          </button>
-                          <div class="horizontalSlider___281Ls carousel__slider carousel__slider--horizontal carousel-items" aria-live="polite" role="listbox"></div>
-                          <button type="button" aria-label="next" class="buttonNext___2mOCa carousel__next-button carousel-arrow carousel-arrow-right rotate-180">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14.242" height="24.242" viewBox="0 0 14.242 24.242">
-                                  <path fill="none" stroke="#333" stroke-linecap="round" stroke-width="3px" d="M2106.842 2395.467l-10 10 10 10" transform="translate(-2094.721 -2393.346)"></path>
-                              </svg>
-                          </button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      `;
+    <div id="similar-items-recommendations">
+        <div class="recommendation-carousel">
+            <div class="carousel-container">
+                <p class="similar-products-title">You Might Also Like</p>
+                    <div>
+                        <button type="button" aria-label="previous" class="buttonBack___1mlaL carousel__back-button carousel-arrow-like carousel-arrow-left-like">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14.242" height="24.242" viewBox="0 0 14.242 24.242">
+                                <path fill="none" stroke="#333" stroke-linecap="round" stroke-width="3px" d="M2106.842 2395.467l-10 10 10 10" transform="translate(-2094.721 -2393.346)"></path>
+                            </svg>
+                        </button>
+                        <div class="horizontalSlider___281Ls carousel__slider carousel__slider--horizontal carousel-items" aria-live="polite" role="listbox"></div>
+                        <button type="button" aria-label="next" class="buttonNext___2mOCa carousel__next-button carousel-arrow-like carousel-arrow-right-like">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14.242" height="24.242" viewBox="0 0 14.242 24.242">
+                                <path fill="none" stroke="#333" stroke-linecap="round" stroke-width="3px" d="M2096.842 2395.467l10 10 -10 10" transform="translate(-2094.721 -2393.346)"></path>
+                            </svg>
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>`;
 
   document
     .querySelector(".product-detail")
     .insertAdjacentHTML("beforeend", html);
+
+  document
+    .querySelector(".carousel-arrow-left-like")
+    .addEventListener("click", () => {
+      document
+        .querySelector(".carousel-items")
+        .scrollBy({ left: -220, behavior: "smooth" });
+    });
+
+  document
+    .querySelector(".carousel-arrow-right-like")
+    .addEventListener("click", () => {
+      document
+        .querySelector(".carousel-items")
+        .scrollBy({ left: 220, behavior: "smooth" });
+    });
 };
 
 const buildCSS = () => {
@@ -37,29 +52,44 @@ const buildCSS = () => {
           }
   
           .carousel-container {
-              display: flex;
-              align-items: center;
-              overflow: hidden;
-              position: relative;
-              gap: 10px;
-          }
+                display: flex;
+                align-items: center;
+                overflow: visible;
+                position: relative;
+                gap: 10px;
+                padding-left: 40px; 
+                margin-left: 40px;
+            }
   
-          .carousel-items {
-              display: flex;
-              overflow-x: auto;
-              scroll-behavior: smooth;
-              white-space: nowrap;
-              padding: 10px;
-              gap: 20px;
-              max-width: 80%;
-          }
-  
-          .carousel-arrow {
+          .carousel-arrow-like {
               background: none;
               border: none;
               cursor: pointer;
               font-size: 24px;
               color: #333;
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              z-index: 10;
+          }
+  
+          .carousel-arrow-left-like {
+              left: -15px;
+          }
+  
+          .carousel-arrow-right-like {
+              right: 0;
+          }
+  
+          .carousel-items {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+            padding: 10px;
+            gap: 20px;
+            max-width: 80%;
+            margin-left: -20px; 
           }
   
           .carousel-arrow:hover {
@@ -96,7 +126,7 @@ const buildCSS = () => {
               white-space: normal;
               word-wrap: break-word;
               font-size: 14px;
-              text-align: left
+              text-align: left;
           }
       `;
 
