@@ -55,6 +55,19 @@ const buildCSS = () => {
         .carousel-btn:hover {
             background-color: #0056b3;
         }
+
+        .new-product-card-like-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        .carousel-item {
+            position: relative;
+        }
     `;
 
   const style = document.createElement("style");
@@ -98,9 +111,13 @@ const renderProducts = (products) => {
                 <a href="${product.url}" target="_blank">
                     <img src="${product.img}" alt="${product.name}" style="width: 210px; height: 280px; object-fit: cover;">
                 </a>
+                <div class="new-product-card-like-button" optionid="${product.id}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.576" height="19.483" viewBox="0 0 20.576 19.483">
+                        <path fill="none" stroke="#555" stroke-width="1.5px" d="M19.032 7.111c-.278-3.063-2.446-5.285-5.159-5.285a5.128 5.128 0 0 0-4.394 2.532 4.942 4.942 0 0 0-4.288-2.532C2.478 1.826.31 4.048.032 7.111a5.449 5.449 0 0 0 .162 2.008 8.614 8.614 0 0 0 2.639 4.4l6.642 6.031 6.755-6.027a8.615 8.615 0 0 0 2.639-4.4 5.461 5.461 0 0 0 .163-2.012z" transform="translate(.756 -1.076)"></path>
+                    </svg>
+                </div>
                 <p>${product.name}</p>
                 <span>${product.price} TL</span>
-                <button class="new-product-card-like-button" optionid="${product.id}">❤️</button>
             </div>
         `;
     container.insertAdjacentHTML("beforeend", productHTML);
@@ -125,12 +142,14 @@ const toggleFavorite = (id, button) => {
   let favorites =
     JSON.parse(localStorage.getItem("favorites")) || [];
 
+  const svgPath = button.querySelector("path");
+
   if (favorites.includes(id)) {
     favorites = favorites.filter((favId) => favId !== id);
-    button.querySelector("svg").style.color = "black";
+    svgPath.setAttribute("stroke", "#555");
   } else {
     favorites.push(id);
-    button.querySelector("svg").style.color = "blue";
+    svgPath.setAttribute("stroke", "blue");
   }
 
   localStorage.setItem(
